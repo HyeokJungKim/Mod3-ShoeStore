@@ -21,7 +21,7 @@ $ rails server             # Start the server
 
 ```JavaScript
 #=> Example Request
-  GET /shoes
+  GET 'http://localhost:3000/shoes'
 #=> Example Response
 [
   {
@@ -70,7 +70,7 @@ The HTML of how you should render the shoes in the `#shoe-list` should look like
 
 ```JavaScript
 #=> Example Request
-  GET /shoes/1
+  GET 'http://localhost:3000/shoes/1'
 #=> Example Response
   {
     "id": 1,
@@ -132,7 +132,7 @@ And the HTML of how you should render one of the reviews in the `#reviews-list` 
 
 ```JavaScript
 #=> Example Request
-  POST `/shoes/${shoe_id}/reviews`
+  POST `http://localhost:3000/shoes/${shoe_id}/reviews`
 
   Required Headers:
   {
