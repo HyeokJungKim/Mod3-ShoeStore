@@ -1,9 +1,9 @@
 # Shoe Store
 Today, you'll be starting your own e-commerce store! You'll be selling shoes and like any self-respecting business, you allow your customers to leave reviews on the shoes you sell. Although the backend has been set up for you, it is your job to build out the proper functionality in the front end with JavaScript!
 
-# Requirements
+# Deliverables
 
-* When a user loads the page, they should be able to see a list of all the shoes in the sidebar and by default, have the first shoe rendered on the main container (see below).
+* When a user loads the page, they should be able to see a list of all the shoes in the sidebar and by default, have the first shoe rendered in the main container (see below).
 * When a user clicks on one of the shoes in the sidebar, they should be able to see more details about the shoe, the reviews associated with it and a form in the main container.
 * When a user fills the form out and submits it, the review should get persisted in the backend and also shown on the page, without refreshing.
 
@@ -18,6 +18,8 @@ $ rails server             # Start the server
 ```
 
 ## Getting All Shoes For the Sidebar
+### Deliverable 1
+
 ```JavaScript
 #=> Example Request
   GET /shoes
@@ -66,6 +68,7 @@ The HTML of how you should render the shoes in the `#shoe-list` should look like
 ```
 
 ## Getting One Shoe for the Main Container
+### Deliverable 2
 
 ```JavaScript
 #=> Example Request
@@ -91,7 +94,7 @@ The HTML of how you should render the shoes in the `#shoe-list` should look like
   }
 ```
 
-The HTML of how you should render the selected shoes in the `#main-shoe` should look like the following:
+The HTML of how you should render the selected shoe in the `#main-shoe` should look like the following:
 
 ```HTML
 <img class="card-img-top" id="shoe-image" src="https://media.journeys.com/images/products/1_547493_ZM.JPG">
@@ -121,13 +124,15 @@ And the HTML of how you should render the form in the `#form-container` should l
 </form>
 ```
 
-And the HTML of how you should render the reviews in the `#reviews-list` should look like the following:
+And the HTML of how you should render one of the reviews in the `#reviews-list` should look like the following:
 
 ```html
 <li class="list-group-item">All my friends are jealous of me because of this shoe!</li>
 ```
 
 ## Submitting the Form
+### Deliverable 3
+
 ```JavaScript
 #=> Example Request
   POST `/shoes/${shoe_id}/reviews`
@@ -148,3 +153,5 @@ And the HTML of how you should render the reviews in the `#reviews-list` should 
     content: "Content of the Review"
   }
 ```
+
+When the `#new-review` form is submitted, we want the new review appended to the `#reviews-list`.
