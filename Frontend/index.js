@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     adapter.index().then(initializePageFromInitialFetch)
     
     let shoes = []
+    const mainShoe = document.getElementById("main-shoe")
     
     // initialize
     function initializePageFromInitialFetch(response){
@@ -27,8 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     function addShoeToShow(id){
-        const shoe = findShoeById(id)
-        mainShoe = document.getElementById("main-shoe") 
+        const shoe = findShoeById(id) 
         mainShoe.innerHTML = 
         `<img class="card-img-top" id="shoe-image" src=${shoe.image}>
         <div class="card-body">
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <p class="card-text" id="shoe-description">${shoe.description}</p>
         <p class="card-text"><small class="text-muted" id="shoe-price">${shoe.price}</small></p>
         <div class="container" id="form-container">
-        <form id="new-review">
+        <form id="new-review" data-id=${shoe.id}>
         <div class="form-group">
         <textarea class="form-control" id="review-content" rows="3"></textarea>
         <input type="submit" class="btn btn-primary"></input>
@@ -49,12 +49,14 @@ document.addEventListener("DOMContentLoaded", () => {
         </ul>
         `
         shoe.reviews.forEach(slapReviewOnDom)
-        mainShoe.addEventListener("submit", (e) => {
-            e.preventDefault()
-            const content = e.target["review-content"].value
-            addReview(shoe.id, content)
-        })
     }
+
+    mainShoe.addEventListener("submit", (e) => {
+        e.preventDefault()
+        const id = e.target.dataset.id
+        const content = e.target["review-content"].value
+        addReview(id, content)
+    })
 
     function slapReviewOnDom(res){
         list = document.getElementById("reviews-list")
