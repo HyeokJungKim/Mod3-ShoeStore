@@ -17,8 +17,7 @@ $ rails db:seed            # Seeds the database
 $ rails server             # Start the server
 ```
 
-## Getting All Shoes For the Sidebar
-### Deliverable 1
+## Getting All Shoes For the Sidebar (Deliverable 1)
 
 ```JavaScript
 #=> Example Request
@@ -67,8 +66,7 @@ The HTML of how you should render the shoes in the `#shoe-list` should look like
 <li class="list-group-item">Crocs Classic Clogs</li>
 ```
 
-## Getting One Shoe for the Main Container
-### Deliverable 2
+## Getting One Shoe for the Main Container (Deliverable 2)
 
 ```JavaScript
 #=> Example Request
@@ -130,8 +128,7 @@ And the HTML of how you should render one of the reviews in the `#reviews-list` 
 <li class="list-group-item">All my friends are jealous of me because of this shoe!</li>
 ```
 
-## Submitting the Form
-### Deliverable 3
+## Submitting the Form (Deliverable 3)
 
 ```JavaScript
 #=> Example Request
