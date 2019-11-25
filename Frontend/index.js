@@ -2,13 +2,14 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     // Adapter is in the other file
-    adapter.index().then(initializePageFromInitialFetch)
+    adapter.index().then(initializePage)
     
+    // setting a "shoes" state allows us to click between shoes without doing a second fetch
     let shoes = []
     const mainShoe = document.getElementById("main-shoe")
     
     // initialize
-    function initializePageFromInitialFetch(response){
+    function initializePage(response){
         shoes = response
         shoes.forEach(addShoeToList)
         addShoeToShow(shoes[0].id)
@@ -32,17 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
         mainShoe.innerHTML = 
         `<img class="card-img-top" id="shoe-image" src=${shoe.image}>
         <div class="card-body">
-        <h4 class="card-title" id="shoe-name">${shoe.name}</h4>
-        <p class="card-text" id="shoe-description">${shoe.description}</p>
-        <p class="card-text"><small class="text-muted" id="shoe-price">${shoe.price}</small></p>
-        <div class="container" id="form-container">
-        <form id="new-review" data-id=${shoe.id}>
-        <div class="form-group">
-        <textarea class="form-control" id="review-content" rows="3"></textarea>
-        <input type="submit" class="btn btn-primary"></input>
-        </div>
-        </form>
-        </div>
+            <h4 class="card-title" id="shoe-name">${shoe.name}</h4>
+            <p class="card-text" id="shoe-description">${shoe.description}</p>
+            <p class="card-text"><small class="text-muted" id="shoe-price">${shoe.price}</small></p>
+            <div class="container" id="form-container">
+                <form id="new-review" data-id=${shoe.id}>
+                    <div class="form-group">
+                    <textarea class="form-control" id="review-content" rows="3"></textarea>
+                    <input type="submit" class="btn btn-primary"></input>
+                    </div>
+                </form>
+            </div>
         </div>
         <h5 class="card-header">Reviews</h5>
         <ul class="list-group list-group-flush" id="reviews-list">
@@ -66,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         list.append(li)
     }
     
-    // Submit review code
+    // Submit review
     function addReview(id, content){
         adapter.postReview(id, content).then(updateCodeWithNewReview)
     }
