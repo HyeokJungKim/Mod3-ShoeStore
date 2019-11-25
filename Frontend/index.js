@@ -3,20 +3,14 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Adapter is in the other file
     adapter.index().then(initializePage)
-    
-    // setting a "shoes" state allows us to click between shoes without doing a second fetch
-    let shoes = []
+
     const mainShoe = document.getElementById("main-shoe")
     
     // initialize
     function initializePage(response){
-        shoes = response
-        shoes.forEach(addShoeToList)
-        addShoeToShow(shoes[0].id)
+        response.forEach(addShoeToList)
+        addShoeToShow(response[0].id)
     }
-
-    // Help
-    const findShoeById = (id) => shoes.find(shoe => shoe.id === id)
     
     // Renders
     function addShoeToList(shoe){
@@ -28,8 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("shoe-list").append(li)
     }
     
-    function addShoeToShow(id){
-        const shoe = findShoeById(id) 
+    function addShoeToShow(id){    
+        adapter.show(id).then(shoe => {
         mainShoe.innerHTML = 
         `<img class="card-img-top" id="shoe-image" src=${shoe.image}>
         <div class="card-body">
@@ -50,13 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
         </ul>
         `
         shoe.reviews.forEach(slapReviewOnDom)
+        })
     }
 
     mainShoe.addEventListener("submit", (e) => {
         e.preventDefault()
         const id = e.target.dataset.id
         const content = e.target["review-content"].value
-        addReview(id, content)
+        adapter.postReview(id, content).then(slapReviewOnDom)
     })
 
     function slapReviewOnDom(res){
@@ -66,14 +61,5 @@ document.addEventListener("DOMContentLoaded", () => {
         li.innerText = res.content
         list.append(li)
     }
-    
-    // Submit review
-    function addReview(id, content){
-        adapter.postReview(id, content).then(updateCodeWithNewReview)
-    }
 
-    function updateCodeWithNewReview(res){
-        slapReviewOnDom(res)
-        findShoeById(res.id).reviews.push(res)
-    }  
 })
