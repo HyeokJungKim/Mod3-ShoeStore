@@ -1,7 +1,7 @@
 class ShoesController < ApplicationController
 
   def index
-    @shoes = Shoe.all
+    @shoes = Shoe.order(:id)
     render json: @shoes
   end
 
